@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      UserMailer.welcome_email(@user).deliver_now   
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -37,6 +38,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+    UserMailer.farewell_email(@user).deliver_now
   end
 
   private
@@ -47,6 +49,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :last_name, :phone, :address, :email, :user_name, :password, :password_confirmation)
+      params.permit(:name, :last_name, :phone, :address, :email, :user_name, :password, :password_confirmation)
     end
 end
