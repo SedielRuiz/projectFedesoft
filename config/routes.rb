@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contraceptive_methods
+  resources :ratings
   resources :apply_surveys
   resources :result_surveys
   resources :options_questions

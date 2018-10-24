@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  qualify: 1
+  observation_ratingn: MyString
+  user_id: 1
+
+two:
+  qualify: 1
+  observation_ratingn: MyString
+  user_id: 1

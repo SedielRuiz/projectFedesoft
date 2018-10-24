@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_024542) do
+ActiveRecord::Schema.define(version: 2018_10_24_035520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2018_10_24_024542) do
     t.datetime "updated_at", null: false
     t.index ["poll_id_id"], name: "index_apply_surveys_on_poll_id_id"
     t.index ["user_id_id"], name: "index_apply_surveys_on_user_id_id"
+  end
+
+  create_table "contraceptive_methods", force: :cascade do |t|
+    t.string "name_contraceptive"
+    t.string "description_contraceptive"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "locations", force: :cascade do |t|
@@ -84,6 +91,16 @@ ActiveRecord::Schema.define(version: 2018_10_24_024542) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "qualify"
+    t.string "observation_rating"
+    t.integer "user_id"
+    t.bigint "user_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id_id"], name: "index_ratings_on_user_id_id"
+  end
+
   create_table "result_risks", id: false, force: :cascade do |t|
     t.bigint "result_survey_id"
     t.bigint "risk_id"
@@ -137,6 +154,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_024542) do
   add_foreign_key "apply_surveys", "users"
   add_foreign_key "neighborhoods", "locations"
   add_foreign_key "options_questions", "questions"
+  add_foreign_key "ratings", "users"
   add_foreign_key "result_surveys", "polls"
   add_foreign_key "result_surveys", "questions"
   add_foreign_key "users", "neighborhoods"

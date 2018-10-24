@@ -1,0 +1,2 @@
+class ContraceptiveMethod < ApplicationRecord
+end

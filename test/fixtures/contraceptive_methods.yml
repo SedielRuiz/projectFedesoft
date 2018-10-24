@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_contraceptive: MyString
+  description_contraceptive: MyString
+
+two:
+  name_contraceptive: MyString
+  description_contraceptive: MyString
