@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_risk: MyString
+  description_risk: MyString
+  recomendations_risks: MyString
+  method_prevention_id: 1
+
+two:
+  name_risk: MyString
+  description_risk: MyString
+  recomendations_risks: MyString
+  method_prevention_id: 1

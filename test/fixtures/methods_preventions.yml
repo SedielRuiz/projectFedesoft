@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_method: MyString
+  description_method: MyString
+  duration_method: 1
+  type_duration: MyString
+  recommendations_method: MyString
+
+two:
+  name_method: MyString
+  description_method: MyString
+  duration_method: 1
+  type_duration: MyString
+  recommendations_method: MyString

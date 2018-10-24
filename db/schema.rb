@@ -10,10 +10,113 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_09_022737) do
+ActiveRecord::Schema.define(version: 2018_10_24_024542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apply_surveys", force: :cascade do |t|
+    t.integer "number_attemps"
+    t.integer "user_id"
+    t.bigint "user_id_id"
+    t.integer "poll_id"
+    t.bigint "poll_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id_id"], name: "index_apply_surveys_on_poll_id_id"
+    t.index ["user_id_id"], name: "index_apply_surveys_on_user_id_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name_location"
+    t.string "zone_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "methods_preventions", force: :cascade do |t|
+    t.string "name_method"
+    t.string "description_method"
+    t.integer "duration_method"
+    t.string "type_duration"
+    t.string "recommendations_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "neighborhoods", force: :cascade do |t|
+    t.string "name_neighborhood"
+    t.integer "location_id"
+    t.bigint "location_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id_id"], name: "index_neighborhoods_on_location_id_id"
+  end
+
+  create_table "options_questions", force: :cascade do |t|
+    t.string "description_opction"
+    t.bit "answer", limit: 1
+    t.integer "question_id"
+    t.bigint "question_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id_id"], name: "index_options_questions_on_question_id_id"
+  end
+
+  create_table "poll_questions", id: false, force: :cascade do |t|
+    t.bigint "poll_id"
+    t.bigint "question_id"
+    t.index ["poll_id"], name: "index_poll_questions_on_poll_id"
+    t.index ["question_id"], name: "index_poll_questions_on_question_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "name_poll"
+    t.integer "type_poll"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "concept_quiestion"
+    t.integer "value_question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "result_risks", id: false, force: :cascade do |t|
+    t.bigint "result_survey_id"
+    t.bigint "risk_id"
+    t.index ["result_survey_id"], name: "index_result_risks_on_result_survey_id"
+    t.index ["risk_id"], name: "index_result_risks_on_risk_id"
+  end
+
+  create_table "result_surveys", force: :cascade do |t|
+    t.bit "answer", limit: 1
+    t.integer "poll_id"
+    t.bigint "poll_id_id"
+    t.integer "question_id"
+    t.bigint "question_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id_id"], name: "index_result_surveys_on_poll_id_id"
+    t.index ["question_id_id"], name: "index_result_surveys_on_question_id_id"
+  end
+
+  create_table "risk_methods", id: false, force: :cascade do |t|
+    t.bigint "risk_id"
+    t.bigint "method_prevention_id"
+    t.index ["method_prevention_id"], name: "index_risk_methods_on_method_prevention_id"
+    t.index ["risk_id"], name: "index_risk_methods_on_risk_id"
+  end
+
+  create_table "risks", force: :cascade do |t|
+    t.string "name_risk"
+    t.string "description_risk"
+    t.string "recomendations_risks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -23,8 +126,18 @@ ActiveRecord::Schema.define(version: 2018_10_09_022737) do
     t.string "email"
     t.string "user_name"
     t.string "password_digest"
+    t.integer "neighborhood_id"
+    t.bigint "neighborhood_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["neighborhood_id_id"], name: "index_users_on_neighborhood_id_id"
   end
 
+  add_foreign_key "apply_surveys", "polls"
+  add_foreign_key "apply_surveys", "users"
+  add_foreign_key "neighborhoods", "locations"
+  add_foreign_key "options_questions", "questions"
+  add_foreign_key "result_surveys", "polls"
+  add_foreign_key "result_surveys", "questions"
+  add_foreign_key "users", "neighborhoods"
 end
