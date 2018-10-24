@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments_forums
+  resources :forums
   resources :contraceptive_methods
   resources :ratings
   resources :apply_surveys
