@@ -1,0 +1,2 @@
+class RiskMethod < ApplicationRecord
+end

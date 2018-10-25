@@ -1,0 +1,2 @@
+class ResultRisk < ApplicationRecord
+end

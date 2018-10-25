@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :result_risks
+  resources :risk_methods
+  resources :poll_questions
   resources :comments_forums
   resources :forums
   resources :contraceptive_methods

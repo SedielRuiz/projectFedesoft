@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2018_10_24_043749) do
 
   create_table "options_questions", force: :cascade do |t|
     t.string "description_opction"
-    t.bit "answer", limit: 1
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
