@@ -10,26 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_035520) do
+ActiveRecord::Schema.define(version: 2018_10_24_043749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "apply_surveys", force: :cascade do |t|
     t.integer "number_attemps"
-    t.integer "user_id"
-    t.bigint "user_id_id"
-    t.integer "poll_id"
-    t.bigint "poll_id_id"
+    t.bigint "user_id"
+    t.bigint "poll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["poll_id_id"], name: "index_apply_surveys_on_poll_id_id"
-    t.index ["user_id_id"], name: "index_apply_surveys_on_user_id_id"
+    t.index ["poll_id"], name: "index_apply_surveys_on_poll_id"
+    t.index ["user_id"], name: "index_apply_surveys_on_user_id"
+  end
+
+  create_table "comments_forums", force: :cascade do |t|
+    t.string "comment_forum"
+    t.bigint "user_id"
+    t.bigint "forum_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["forum_id"], name: "index_comments_forums_on_forum_id"
+    t.index ["user_id"], name: "index_comments_forums_on_user_id"
   end
 
   create_table "contraceptive_methods", force: :cascade do |t|
     t.string "name_contraceptive"
     t.string "description_contraceptive"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "forums", force: :cascade do |t|
+    t.string "title_forum"
+    t.string "objective_forum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,21 +68,19 @@ ActiveRecord::Schema.define(version: 2018_10_24_035520) do
 
   create_table "neighborhoods", force: :cascade do |t|
     t.string "name_neighborhood"
-    t.integer "location_id"
-    t.bigint "location_id_id"
+    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["location_id_id"], name: "index_neighborhoods_on_location_id_id"
+    t.index ["location_id"], name: "index_neighborhoods_on_location_id"
   end
 
   create_table "options_questions", force: :cascade do |t|
     t.string "description_opction"
     t.bit "answer", limit: 1
-    t.integer "question_id"
-    t.bigint "question_id_id"
+    t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question_id_id"], name: "index_options_questions_on_question_id_id"
+    t.index ["question_id"], name: "index_options_questions_on_question_id"
   end
 
   create_table "poll_questions", id: false, force: :cascade do |t|
@@ -94,11 +107,10 @@ ActiveRecord::Schema.define(version: 2018_10_24_035520) do
   create_table "ratings", force: :cascade do |t|
     t.integer "qualify"
     t.string "observation_rating"
-    t.integer "user_id"
-    t.bigint "user_id_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id_id"], name: "index_ratings_on_user_id_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "result_risks", id: false, force: :cascade do |t|
@@ -112,12 +124,11 @@ ActiveRecord::Schema.define(version: 2018_10_24_035520) do
     t.bit "answer", limit: 1
     t.integer "poll_id"
     t.bigint "poll_id_id"
-    t.integer "question_id"
-    t.bigint "question_id_id"
+    t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["poll_id_id"], name: "index_result_surveys_on_poll_id_id"
-    t.index ["question_id_id"], name: "index_result_surveys_on_question_id_id"
+    t.index ["question_id"], name: "index_result_surveys_on_question_id"
   end
 
   create_table "risk_methods", id: false, force: :cascade do |t|
@@ -143,15 +154,16 @@ ActiveRecord::Schema.define(version: 2018_10_24_035520) do
     t.string "email"
     t.string "user_name"
     t.string "password_digest"
-    t.integer "neighborhood_id"
-    t.bigint "neighborhood_id_id"
+    t.bigint "neighborhood_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["neighborhood_id_id"], name: "index_users_on_neighborhood_id_id"
+    t.index ["neighborhood_id"], name: "index_users_on_neighborhood_id"
   end
 
   add_foreign_key "apply_surveys", "polls"
   add_foreign_key "apply_surveys", "users"
+  add_foreign_key "comments_forums", "forums"
+  add_foreign_key "comments_forums", "users"
   add_foreign_key "neighborhoods", "locations"
   add_foreign_key "options_questions", "questions"
   add_foreign_key "ratings", "users"

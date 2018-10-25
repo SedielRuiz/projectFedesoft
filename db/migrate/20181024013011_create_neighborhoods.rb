@@ -4,8 +4,7 @@ class CreateNeighborhoods < ActiveRecord::Migration[5.2]
       t.string :name_neighborhood
 
       #foranea localidad
-      t.integer :location_id
-      t.references :location_id, index: true
+      t.references :location, index: true
 
       t.timestamps
     end

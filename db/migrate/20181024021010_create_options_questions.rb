@@ -5,8 +5,7 @@ class CreateOptionsQuestions < ActiveRecord::Migration[5.2]
       t.bit :answer
 
       #foranea pregunta
-      t.integer :question_id
-      t.references :question_id, index: true
+      t.references :question, index: true
       
       t.timestamps
     end

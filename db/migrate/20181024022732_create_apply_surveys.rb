@@ -4,11 +4,9 @@ class CreateApplySurveys < ActiveRecord::Migration[5.2]
       t.integer :number_attemps
 
       #foranea usuario
-      t.integer :user_id
-      t.references :user_id, index: true
+      t.references :user, index: true
       #foranea encuestas
-      t.integer :poll_id
-      t.references :poll_id, index: true
+      t.references :poll, index: true
 
       t.timestamps
     end

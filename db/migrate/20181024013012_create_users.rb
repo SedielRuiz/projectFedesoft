@@ -10,8 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password_digest
 
       #foranea barrio
-      t.integer :neighborhood_id
-      t.references :neighborhood_id, index: true
+      t.references :neighborhood, index: true
 
       t.timestamps
     end

@@ -5,8 +5,7 @@ class CreateRatings < ActiveRecord::Migration[5.2]
       t.string :observation_rating
 
       #foranea usuario
-      t.integer :user_id
-      t.references :user_id, index: true
+      t.references :user, index: true
       
       t.timestamps
     end

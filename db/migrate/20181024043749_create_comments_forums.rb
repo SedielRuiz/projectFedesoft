@@ -4,11 +4,9 @@ class CreateCommentsForums < ActiveRecord::Migration[5.2]
       t.string :comment_forum
 
       #foranea usuario
-      t.integer :user_id
-      t.references :user_id, index: true
+      t.references :user, index: true
       #foranea foro
-      t.integer :forum_id
-      t.references :forum_id, index: true
+      t.references :forum, index: true
 
       t.timestamps
     end
