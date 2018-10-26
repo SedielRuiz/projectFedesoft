@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   resources :locations
   post 'user_token' => 'user_token#create'
   resources :users
-  post 'signIn' => 'users#signIn'
+  get 'signIn/:email' => 'users#signIn'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
