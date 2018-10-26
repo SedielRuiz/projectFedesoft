@@ -9,7 +9,12 @@ class UsersController < ApplicationController
     render json: @users
   end
 
-  # GET /users/1
+  #POST QUERY / users/email/pass
+  def signIn
+    @user = User.where(email: params[:email])
+      render json: @user
+  end
+  # GET /users/1 
   def show
     render json: @user
   end
