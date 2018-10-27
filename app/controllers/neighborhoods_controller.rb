@@ -1,5 +1,5 @@
 class NeighborhoodsController < ApplicationController
-  before_action :authenticate_user, except: [:create]
+  before_action :authenticate_user, except: [:create, :index]
   before_action :set_neighborhood, only: [:show, :update, :destroy]
 
   # GET /neighborhoods
