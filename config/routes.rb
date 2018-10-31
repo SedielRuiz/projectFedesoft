@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :apply_surveys
   resources :result_surveys
   resources :options_questions
-  get 'optionsQuestion/:poll_id' => 'options_questions#optionsQuestion'
+  get 'optionsQuestion/:question_id' => 'options_questions#optionsQuestion'
   resources :polls
   resources :questions
   resources :risks
