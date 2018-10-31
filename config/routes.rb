@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :result_risks
   resources :risk_methods
   resources :poll_questions
+  get 'questionsPoll/:poll_id' => 'poll_questions#questiosSurvey'
   resources :comments_forums
   resources :forums
   resources :contraceptive_methods
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   resources :apply_surveys
   resources :result_surveys
   resources :options_questions
+  get 'optionsQuestion/:poll_id' => 'options_questions#optionsQuestion'
   resources :polls
   resources :questions
   resources :risks

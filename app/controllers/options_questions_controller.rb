@@ -13,6 +13,12 @@ class OptionsQuestionsController < ApplicationController
     render json: @options_question
   end
 
+  # GET /optionsQuestion/question_id
+  def optionsQuestion
+    @options_question = OptionsQuestion.where(question_id: params[:question_id])
+    render json: @options_question
+  end
+
   # POST /options_questions
   def create
     @options_question = OptionsQuestion.new(options_question_params)

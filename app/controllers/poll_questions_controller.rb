@@ -13,6 +13,12 @@ class PollQuestionsController < ApplicationController
     render json: @poll_question
   end
 
+  # GET /questiosSurvey/id_poll
+  def questiosSurvey
+    @poll_question = PollQuestion.where(poll_id: params[:poll_id])
+    render json: @poll_question
+  end
+
   # POST /poll_questions
   def create
     @poll_question = PollQuestion.new(poll_question_params)
