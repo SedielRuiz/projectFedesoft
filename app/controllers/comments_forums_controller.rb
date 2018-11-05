@@ -53,6 +53,6 @@ class CommentsForumsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def comments_forum_params
-      params.permit(:comments_forum).permit(:forum_id, :user_id, :comment_forum)
+      params.permit(:forum_id, :user_id, :comment_forum)
     end
 end
