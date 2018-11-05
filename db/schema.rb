@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_043749) do
     t.index ["question_id"], name: "index_options_questions_on_question_id"
   end
 
-  create_table "poll_questions", id: false, force: :cascade do |t|
+  create_table "polls_questions", id: false, force: :cascade do |t|
     t.bigint "poll_id"
     t.bigint "question_id"
     t.index ["poll_id"], name: "index_poll_questions_on_poll_id"
