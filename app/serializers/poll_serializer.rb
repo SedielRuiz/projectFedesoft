@@ -4,7 +4,7 @@ class PollSerializer < ActiveModel::Serializer
 
   class QuestionSerializer < ActiveModel::Serializer
     attributes :id, :concept_quiestion, :value_question
-    belongs_to :options_question
+    has_many :options_question
 
     class OptionsQuestionSerializer < ActiveModel::Serializer      
       attributes :id, :description_opction, :question_id
