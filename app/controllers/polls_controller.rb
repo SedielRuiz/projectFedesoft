@@ -10,7 +10,7 @@ class PollsController < ApplicationController
 
   # GET /polls/1
   def show
-    render json: @poll
+    render json: @poll, include: '**'
   end
 
   # POST /polls
