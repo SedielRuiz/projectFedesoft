@@ -1,4 +1,5 @@
 class CommentsForumsController < ApplicationController
+  before_action :authenticate_user, except: [:create]
   before_action :set_comments_forum, only: [:show, :update, :destroy]
 
   # GET /comments_forums
@@ -6,6 +7,12 @@ class CommentsForumsController < ApplicationController
     @comments_forums = CommentsForum.all
 
     render json: @comments_forums
+  end
+
+  # GET /commetsForum/forum_id
+  def commetsForum
+    @comments_forum = CommentsForum.where(forum_id: params[:forum_id])
+    render json: @comments_forum
   end
 
   # GET /comments_forums/1

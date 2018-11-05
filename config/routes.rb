@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :poll_questions
   get 'questionsPoll/:poll_id' => 'poll_questions#questiosSurvey'
   resources :comments_forums
+  get 'commetsForum/:forum_id' => 'comments_forums#commetsForum'
   resources :forums
   resources :contraceptive_methods
   resources :ratings
