@@ -1,5 +1,5 @@
 class PollSerializer < ActiveModel::Serializer
-  attributes :id, :name_poll
+  attributes :id, :name_poll, :type_poll
   has_many :questions
 
   class QuestionSerializer < ActiveModel::Serializer

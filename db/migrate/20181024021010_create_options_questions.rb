@@ -2,6 +2,7 @@ class CreateOptionsQuestions < ActiveRecord::Migration[5.2]
   def change
     create_table :options_questions do |t|
       t.string :description_opction
+      t.bit :answer
 
       #foranea pregunta
       t.references :question, index: true
