@@ -7,5 +7,5 @@ class User < ApplicationRecord
     #relacionnuno a muchos: un usuario califica la plataforma
     has_many :ratings
     #relacion uno a muchos: un usuario puede comentar cualquier foro
-    has_many :comment_forum
+    belongs_to :comments_forums
 end
