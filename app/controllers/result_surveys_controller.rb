@@ -46,6 +46,6 @@ class ResultSurveysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def result_survey_params
-      params.require(:result_survey).permit(:apply_poll_id, :poll_id, :question_id, :answer)
+      params.permit(:apply_poll_id, :poll_id, :question_id, :answer)
     end
 end
